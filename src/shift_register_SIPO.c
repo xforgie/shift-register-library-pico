@@ -3,14 +3,21 @@
 #include <stdlib.h>
 
 #include "pico/stdlib.h"
-#include "PicoShiftRegisterLib/shift_register_SIPO.h"
+#include "rpi_pico_shift_register/shift_register_SIPO.h"
 
-shift_register_SIPO* shift_register_SIPO_create(uint32_t num_connected, uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin) {
+static void func_set_enable_pin(ShiftRegisterSIPO *sr, uint8_t enable_pin) {
+    gpio_init(enable_pin);
+    gpio_set_dir(enable_pin, GPIO_OUT);
+    gpio_put(enable_pin, 0);    // enable output by default
+    sr->enable_pin = enable_pin;
+}
 
-    shift_register_SIPO *sr = malloc(sizeof(*sr));
+ShiftRegisterSIPO* shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin) {
+
+    ShiftRegisterSIPO *sr = malloc(sizeof(*sr));
     if (sr == NULL) {
         printf("ERROR: Could not allocate memory\n");
-        exit(1);
+        return NULL;
     }
 
     sr->serial_pin = serial_pin;
@@ -18,8 +25,6 @@ shift_register_SIPO* shift_register_SIPO_create(uint32_t num_connected, uint8_t 
     sr->clock_pin = clock_pin;
     sr->enable_pin = 255;
     sr->clear_pin = 255;
-
-    sr->num_connected = num_connected;
 
     gpio_init(serial_pin);
     gpio_init(latch_pin);
@@ -33,32 +38,31 @@ shift_register_SIPO* shift_register_SIPO_create(uint32_t num_connected, uint8_t 
     gpio_put(latch_pin, 0);
     gpio_put(clock_pin, 0);
 
+    sr->set_enable_pin = func_set_enable_pin;
+
     return sr;
 }
 
-void shift_register_SIPO_set_enable_pin(shift_register_SIPO *sr, uint8_t enable_pin) {
-    gpio_init(enable_pin);
-    gpio_set_dir(enable_pin, GPIO_OUT);
-    gpio_put(enable_pin, 0);    // enable output by default
-    sr->enable_pin = enable_pin;
+void shift_register_SIPO_set_enable_pin(ShiftRegisterSIPO *sr, uint8_t enable_pin) {
+    sr->set_enable_pin(sr, enable_pin);
 }
 
-void shift_register_SIPO_set_enable(shift_register_SIPO *sr, bool value) {
+void shift_register_SIPO_set_enable(ShiftRegisterSIPO *sr, bool value) {
     gpio_put(sr->enable_pin, !value);
 }
 
-void shift_register_SIPO_latch(shift_register_SIPO *sr) {
+void shift_register_SIPO_latch(ShiftRegisterSIPO *sr) {
     gpio_put(sr->latch_pin, 1);
     gpio_put(sr->latch_pin, 0);
 }
 
-void shift_register_SIPO_write_bit(shift_register_SIPO *sr, bool value) {
+void shift_register_SIPO_write_bit(ShiftRegisterSIPO *sr, bool value) {
     gpio_put(sr->serial_pin, value);
     gpio_put(sr->clock_pin, 1);
     gpio_put(sr->clock_pin, 0);
 }
 
-void shift_register_SIPO_write_byte(shift_register_SIPO* sr, uint8_t byte, byte_order_t byte_order) {
+void shift_register_SIPO_write_byte(ShiftRegisterSIPO* sr, uint8_t byte, ByteOrder byte_order) {
 
     if (byte_order == MSBFIRST) {
 
@@ -79,11 +83,10 @@ void shift_register_SIPO_write_byte(shift_register_SIPO* sr, uint8_t byte, byte_
     }
 }
 
-void shift_register_SIPO_clear(shift_register_SIPO* sr) {
-    for (int i = 0; i < sr->num_connected; i++)
-        shift_register_SIPO_write_byte(sr, 0, MSBFIRST);
+void shift_register_SIPO_clear(ShiftRegisterSIPO* sr) {
+    shift_register_SIPO_write_byte(sr, 0, MSBFIRST);
 }
 
-void shift_register_SIPO_destroy(shift_register_SIPO* sr) {
+void shift_register_SIPO_destroy(ShiftRegisterSIPO* sr) {
     free(sr);
 }

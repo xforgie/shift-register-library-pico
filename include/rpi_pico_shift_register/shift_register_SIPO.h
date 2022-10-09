@@ -16,13 +16,13 @@
 typedef enum {
     MSBFIRST = 0,   /** Most significant bit first */
     LSBFIRST        /** Least significant bit first*/
-} byte_order_t;
+} ByteOrder;
 
 /**
  * @brief A structure containing pin information for a shift register
  * 
  */
-typedef struct {
+typedef struct ShiftRegisterSIPO{
 
     uint8_t serial_pin;
     uint8_t latch_pin;
@@ -31,20 +31,19 @@ typedef struct {
     uint8_t enable_pin;
     uint8_t clear_pin;
 
-    uint32_t num_connected; /** How many registers are connected to eachother */
+    void (*set_enable_pin)(struct ShiftRegisterSIPO *, uint8_t);
 
-} shift_register_SIPO;
+} ShiftRegisterSIPO;
 
 /**
  * @brief Allocate memory and assign pins for shift_register_SIPO structure
  * 
- * @param num_connected How many shift registers are chained serially
  * @param serial_pin GPIO pin for serial output
  * @param latch_pin GPIO pin for latch output
  * @param clock_pin GPIO pin for clock output
  * @return shift_register_SIPO*, NULL if there was a failure to allocate memory 
  */
-shift_register_SIPO* shift_register_SIPO_create (uint32_t num_connected, uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);
+ShiftRegisterSIPO* shift_register_SIPO_create (uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);
 
 /**
  * @brief Set GPIO for the enable pin
@@ -52,7 +51,7 @@ shift_register_SIPO* shift_register_SIPO_create (uint32_t num_connected, uint8_t
  * @param sr shift register
  * @param enable_pin GPIO pin for enable output
  */
-void shift_register_SIPO_set_enable_pin (shift_register_SIPO *sr, uint8_t enable_pin);
+void shift_register_SIPO_set_enable_pin (ShiftRegisterSIPO *sr, uint8_t enable_pin);
 
 /**
  * @brief Set output enable
@@ -66,23 +65,23 @@ void shift_register_SIPO_set_enable_pin (shift_register_SIPO *sr, uint8_t enable
  * @param sr shift register
  * @param value true enables the output, false disables it
  */
-void shift_register_SIPO_set_enable (shift_register_SIPO *sr, bool value);
+void shift_register_SIPO_set_enable (ShiftRegisterSIPO *sr, bool value);
 
 /**
  * @brief Latches register output
  * 
  * @param sr shift register
  */
-void shift_register_SIPO_latch (shift_register_SIPO *sr);
+void shift_register_SIPO_latch (ShiftRegisterSIPO *sr);
 
 /**
  * @brief Writes a byte of data to the shift register
  * 
  * @param sr shift register
  * @param byte data to transmit
- * @param byte_order byte order
+ * @param ByteOrder byte order
  */
-void shift_register_SIPO_write_byte (shift_register_SIPO *sr, uint8_t byte, byte_order_t byte_order);
+void shift_register_SIPO_write_byte (ShiftRegisterSIPO *sr, uint8_t byte, ByteOrder byte_order);
 
 /**
  * @brief Write a single bit to the shift register
@@ -90,20 +89,20 @@ void shift_register_SIPO_write_byte (shift_register_SIPO *sr, uint8_t byte, byte
  * @param sr shift register
  * @param value 0 (false) or 1 (true)
  */
-void shift_register_SIPO_write_bit (shift_register_SIPO *sr, bool value);
+void shift_register_SIPO_write_bit (ShiftRegisterSIPO *sr, bool value);
 
 /**
  * @brief Sets output of shift register to all zeros
  * 
  * @param sr shift register
  */
-void shift_register_SIPO_clear (shift_register_SIPO *sr);
+void shift_register_SIPO_clear (ShiftRegisterSIPO *sr);
 
 /**
  * @brief Free shift_register_SIPO structure
  * 
  * @param sr shift register
  */
-void shift_register_SIPO_destroy (shift_register_SIPO *sr);
+void shift_register_SIPO_destroy (ShiftRegisterSIPO *sr);
 
 #endif

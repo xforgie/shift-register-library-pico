@@ -1,10 +1,6 @@
 
-# add_library(PicoShiftRegisterLib shift_register_SIPO.c)
+add_library(rpi_pico_shift_register shift_register_SIPO.c)
 
-# include_directories(../include/PicoShiftRegisterLib)
+target_include_directories(rpi_pico_shift_register PUBLIC ../include)
 
-add_library(PicoShiftRegisterLib shift_register_SIPO.c)
-
-target_include_directories(PicoShiftRegisterLib PUBLIC "/home/xforgie/Desktop/rasppico/pico/PicoShiftRegisterLib/include/")
-
-target_link_libraries(PicoShiftRegisterLib pico_stdlib)
+target_link_libraries(rpi_pico_shift_register pico_stdlib)
