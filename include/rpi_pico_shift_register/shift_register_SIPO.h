@@ -22,7 +22,7 @@ typedef enum {
  * @brief A structure containing pin information for a shift register
  * 
  */
-typedef struct ShiftRegisterSIPO{
+typedef struct {
 
     uint8_t serial_pin;
     uint8_t latch_pin;
@@ -31,7 +31,9 @@ typedef struct ShiftRegisterSIPO{
     uint8_t enable_pin;
     uint8_t clear_pin;
 
-    void (*set_enable_pin)(struct ShiftRegisterSIPO *, uint8_t);
+    void (*set_enable_pin)(ShiftRegisterSIPO *, uint8_t);
+    void (*set_enable)(ShiftRegisterSIPO *, uint8_t);
+    void (*latch)(ShiftRegisterSIPO *);
 
 } ShiftRegisterSIPO;
 

@@ -12,6 +12,15 @@ static void func_set_enable_pin(ShiftRegisterSIPO *sr, uint8_t enable_pin) {
     sr->enable_pin = enable_pin;
 }
 
+static void func_set_enable(ShiftRegisterSIPO *sr, bool value) {
+    gpio_put(sr->enable_pin, !value);
+}
+
+static void func_latch(ShiftRegisterSIPO *sr) {
+    gpio_put(sr->latch_pin, 1);
+    gpio_put(sr->latch_pin, 0);
+}
+
 ShiftRegisterSIPO* shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin) {
 
     ShiftRegisterSIPO *sr = malloc(sizeof(*sr));
@@ -39,6 +48,8 @@ ShiftRegisterSIPO* shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_
     gpio_put(clock_pin, 0);
 
     sr->set_enable_pin = func_set_enable_pin;
+    sr->set_enable = func_set_enable;
+    sr->latch = func_latch;
 
     return sr;
 }
@@ -48,12 +59,11 @@ void shift_register_SIPO_set_enable_pin(ShiftRegisterSIPO *sr, uint8_t enable_pi
 }
 
 void shift_register_SIPO_set_enable(ShiftRegisterSIPO *sr, bool value) {
-    gpio_put(sr->enable_pin, !value);
+    sr->set_enable(sr, value);
 }
 
 void shift_register_SIPO_latch(ShiftRegisterSIPO *sr) {
-    gpio_put(sr->latch_pin, 1);
-    gpio_put(sr->latch_pin, 0);
+    sr->latch(sr);
 }
 
 void shift_register_SIPO_write_bit(ShiftRegisterSIPO *sr, bool value) {
