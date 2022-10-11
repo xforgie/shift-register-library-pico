@@ -22,7 +22,7 @@ typedef enum {
  * @brief A structure containing pin information for a shift register
  * 
  */
-typedef struct {
+typedef struct ShiftRegisterSIPO{
 
     uint8_t serial_pin;
     uint8_t latch_pin;
@@ -31,21 +31,24 @@ typedef struct {
     uint8_t enable_pin;
     uint8_t clear_pin;
 
-    void (*set_enable_pin)(ShiftRegisterSIPO *, uint8_t);
-    void (*set_enable)(ShiftRegisterSIPO *, uint8_t);
-    void (*latch)(ShiftRegisterSIPO *);
+    void (*set_enable_pin)(struct ShiftRegisterSIPO *, uint8_t);
+    void (*set_enable)(struct ShiftRegisterSIPO *, bool);
+    void (*latch)(struct ShiftRegisterSIPO *);
+    void (*write_byte)(struct ShiftRegisterSIPO *, uint8_t, ByteOrder);
+    void (*write_bit)(struct ShiftRegisterSIPO *, bool);
+    void (*clear)(struct ShiftRegisterSIPO *);
 
 } ShiftRegisterSIPO;
 
 /**
- * @brief Allocate memory and assign pins for shift_register_SIPO structure
+ * @brief Sets GPIO and initializes shift_register_SIPO structure
  * 
  * @param serial_pin GPIO pin for serial output
  * @param latch_pin GPIO pin for latch output
  * @param clock_pin GPIO pin for clock output
  * @return shift_register_SIPO*, NULL if there was a failure to allocate memory 
  */
-ShiftRegisterSIPO* shift_register_SIPO_create (uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);
+ShiftRegisterSIPO shift_register_SIPO_create (uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);
 
 /**
  * @brief Set GPIO for the enable pin

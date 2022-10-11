@@ -1,5 +1,6 @@
-
 add_library(rpi_pico_shift_register shift_register_SIPO.c)
+
+target_compile_options(rpi_pico_shift_register PRIVATE -Wall)
 
 target_include_directories(rpi_pico_shift_register PUBLIC ../include)
 
