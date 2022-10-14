@@ -1,4 +1,4 @@
-add_library(rpi_pico_shift_register shift_register_SIPO.c)
+add_library(rpi_pico_shift_register shift_register_SIPO.c shift_register_PISO.c)
 
 target_compile_options(rpi_pico_shift_register PRIVATE -Wall)
 

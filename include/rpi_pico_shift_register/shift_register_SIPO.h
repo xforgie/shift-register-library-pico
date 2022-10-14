@@ -1,7 +1,7 @@
 
 /**
  * @file shift_register_SIPO.h
- * @brief header for shift_register_SIPO library
+ * @brief header for rpi_pico_shift_register library
  */
 
 #ifndef SHIFT_REGISTER_SIPO_H
@@ -14,12 +14,12 @@
  * 
  */
 typedef enum {
-    MSBFIRST = 0,   /** Most significant bit first */
-    LSBFIRST        /** Least significant bit first*/
+    MSBFIRST = 0,   /**< Most significant bit first */
+    LSBFIRST        /**< Least significant bit first*/
 } ByteOrder;
 
 /**
- * @brief A structure containing pin information for a shift register
+ * @brief A structure containing pin information for a Serial-In-Parallel-Out shift register
  * 
  */
 typedef struct ShiftRegisterSIPO{
@@ -46,7 +46,7 @@ typedef struct ShiftRegisterSIPO{
  * @param serial_pin GPIO pin for serial output
  * @param latch_pin GPIO pin for latch output
  * @param clock_pin GPIO pin for clock output
- * @return shift_register_SIPO*, NULL if there was a failure to allocate memory 
+ * @return ShiftRegisterSIPO 
  */
 ShiftRegisterSIPO shift_register_SIPO_create (uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);
 
