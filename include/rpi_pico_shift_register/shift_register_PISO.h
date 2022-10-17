@@ -1,6 +1,6 @@
 /**
  * @file shift_register_PISO.h
- * @brief header for rpi_pico_shift_register library
+ * @brief header for CD4021B shift register
 */
 
 #ifndef SHIFT_REGISTER_PISO_H

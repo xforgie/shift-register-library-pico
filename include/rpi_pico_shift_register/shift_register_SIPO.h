@@ -1,11 +1,13 @@
 
 /**
  * @file shift_register_SIPO.h
- * @brief header for rpi_pico_shift_register library
+ * @brief header for SN74HC595 shift register
  */
 
 #ifndef SHIFT_REGISTER_SIPO_H
 #define SHIFT_REGISTER_SIPO_H
+
+#define PIN_DISABLED 0xff   // default value for uninitialized pins
 
 #include <stdint.h>
 
@@ -22,20 +24,20 @@ typedef enum {
  * @brief A structure containing pin information for a Serial-In-Parallel-Out shift register
  * 
  */
-typedef struct ShiftRegisterSIPO{
+typedef struct ShiftRegisterSIPO {
 
     uint8_t serial_pin;
     uint8_t latch_pin;
     uint8_t clock_pin;
 
     uint8_t enable_pin;
-    uint8_t clear_pin;
+    uint8_t clear_pin;  // Not used
 
     void (*set_enable_pin)(struct ShiftRegisterSIPO *, uint8_t);
-    void (*set_enable)(struct ShiftRegisterSIPO *, bool);
+    void (*enable)(struct ShiftRegisterSIPO *, bool);
     void (*latch)(struct ShiftRegisterSIPO *);
-    void (*write_byte)(struct ShiftRegisterSIPO *, uint8_t, ByteOrder);
     void (*write_bit)(struct ShiftRegisterSIPO *, bool);
+    void (*write_byte)(struct ShiftRegisterSIPO *, uint8_t, ByteOrder);
     void (*clear)(struct ShiftRegisterSIPO *);
 
 } ShiftRegisterSIPO;
@@ -61,16 +63,16 @@ void shift_register_SIPO_set_enable_pin (ShiftRegisterSIPO *sr, uint8_t enable_p
 /**
  * @brief Set output enable
  * 
- * @discussion The output enable pin is active low, so
+ * @details The uutput enable pin on the SN74HC595 is active low, so
  * the GPIO will be set to the complement of the
- * boolean entered here; i.e. false will set the GPIO high
+ * boolean entered here; i.e. false will set the GPIO high.
+ * The enable pin needs to be set by shift_register_SIPO_set_enable_pin()
+ * prior to calling this function
  * 
- * @todo throw an error if enable pin is not set 
- *
  * @param sr shift register
  * @param value true enables the output, false disables it
  */
-void shift_register_SIPO_set_enable (ShiftRegisterSIPO *sr, bool value);
+void shift_register_SIPO_enable (ShiftRegisterSIPO *sr, bool value);
 
 /**
  * @brief Latches register output
@@ -78,15 +80,6 @@ void shift_register_SIPO_set_enable (ShiftRegisterSIPO *sr, bool value);
  * @param sr shift register
  */
 void shift_register_SIPO_latch (ShiftRegisterSIPO *sr);
-
-/**
- * @brief Writes a byte of data to the shift register
- * 
- * @param sr shift register
- * @param byte data to transmit
- * @param ByteOrder byte order
- */
-void shift_register_SIPO_write_byte (ShiftRegisterSIPO *sr, uint8_t byte, ByteOrder byte_order);
 
 /**
  * @brief Write a single bit to the shift register
@@ -97,17 +90,19 @@ void shift_register_SIPO_write_byte (ShiftRegisterSIPO *sr, uint8_t byte, ByteOr
 void shift_register_SIPO_write_bit (ShiftRegisterSIPO *sr, bool value);
 
 /**
+ * @brief Writes a byte of data to the shift register
+ * 
+ * @param sr shift register
+ * @param byte data to transmit
+ * @param ByteOrder byte order, defaults to MSBFIRST on invalid input
+ */
+void shift_register_SIPO_write_byte (ShiftRegisterSIPO *sr, uint8_t byte, ByteOrder byte_order);
+
+/**
  * @brief Sets output of shift register to all zeros
  * 
  * @param sr shift register
  */
 void shift_register_SIPO_clear (ShiftRegisterSIPO *sr);
-
-/**
- * @brief Free shift_register_SIPO structure
- * 
- * @param sr shift register
- */
-void shift_register_SIPO_destroy (ShiftRegisterSIPO *sr);
 
 #endif

@@ -9,26 +9,22 @@
 
 static void read_in_byte(ShiftRegisterPISO *sr, char *buffer) {
 
-    gpio_put(sr->latch_pin, 0);
+    gpio_put(sr->latch_pin, false);
 
-        uint8_t value = 0;
+    uint8_t value = 0;
 
-        for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 7; i++) {
+        gpio_put(sr->clock_pin, false);
 
-            gpio_put(sr->clock_pin, 0);
+        bool data = gpio_get(sr->serial_pin);
+        value |= ((data ? 1 : 0) << i);
 
-            bool data = gpio_get(sr->serial_pin);
-            printf("%d", data ? 1 : 0);
-            value |= ((data ? 1 : 0) << i);
+        gpio_put(sr->clock_pin, true);
+    }
 
-            gpio_put(sr->clock_pin, 1);
-        }
-
-    gpio_put(sr->latch_pin, 1);
+    gpio_put(sr->latch_pin, true);
 
     *buffer = value;
-
-    printf("    value: %2x\n", value);
 }
 
 ShiftRegisterPISO shift_register_PISO_create(uint8_t serial_pin, uint8_t clock_pin, uint8_t latch_pin) {
