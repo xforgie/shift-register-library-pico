@@ -2,6 +2,8 @@
 
 cmake_minimum_required(VERSION 3.13)
 
+option(EXAMPLES "build examples" OFF)
+
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
@@ -13,4 +15,9 @@ project(rpi_pico_shift_register C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-add_subdirectory(./src)
+if (EXAMPLES)
+    add_subdirectory(./src)
+    add_subdirectory(./examples)
+else()
+    add_subdirectory(./src)
+endif()

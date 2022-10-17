@@ -9,6 +9,7 @@
 
 #define PIN_DISABLED 0xff   // default value for uninitialized pins
 
+#include <stdbool.h>
 #include <stdint.h>
 
 /**

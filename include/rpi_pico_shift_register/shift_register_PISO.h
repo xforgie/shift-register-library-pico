@@ -6,6 +6,7 @@
 #ifndef SHIFT_REGISTER_PISO_H
 #define SHIFT_REGISTER_PISO_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 /**
