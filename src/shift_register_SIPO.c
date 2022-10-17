@@ -1,7 +1,4 @@
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "pico/stdlib.h"
 #include "rpi_pico_shift_register/shift_register_SIPO.h"
 
