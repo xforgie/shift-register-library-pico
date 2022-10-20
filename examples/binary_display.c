@@ -20,8 +20,8 @@ int main() {
     stdio_init_all();
 
     const uint8_t serial_pin = 15;
-    const uint8_t latch_pin = 14;
     const uint8_t clock_pin = 13;
+    const uint8_t latch_pin = 14;
 
     ShiftRegisterSIPO sr = shift_register_SIPO_create(serial_pin, clock_pin, latch_pin);
 
