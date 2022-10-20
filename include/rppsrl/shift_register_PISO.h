@@ -19,7 +19,7 @@ typedef struct ShiftRegisterPISO {
     uint8_t clock_pin;
     uint8_t latch_pin;
 
-    void (*read_in_byte)(struct ShiftRegisterPISO *, char *);
+    void (*read_in_byte)(struct ShiftRegisterPISO *, uint8_t *);
 
 } ShiftRegisterPISO;
 
@@ -36,9 +36,11 @@ ShiftRegisterPISO shift_register_PISO_create(uint8_t serial_pin, uint8_t clock_p
 /**
  * @brief Reads a byte into the provided buffer from the shift register
  * 
+ * @note Uses busy waiting to be within the 3 MHz limit of CD4021BE
+ * 
  * @param sr shift register
  * @param buffer data buffer
  */
-void shift_register_PISO_read_in_byte(ShiftRegisterPISO *sr, char *buffer);
+void shift_register_PISO_read_in_byte(ShiftRegisterPISO *sr, uint8_t *buffer);
 
 #endif

@@ -10,7 +10,9 @@ set(CMAKE_CXX_STANDARD 17)
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(rpi_pico_shift_register C CXX ASM)
+project(rppsrl C CXX ASM)
+
+enable_language(C)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()

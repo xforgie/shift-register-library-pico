@@ -1,7 +1,7 @@
-add_library(rpi_pico_shift_register shift_register_SIPO.c shift_register_PISO.c)
+add_library(rppsrl shift_register_SIPO.c shift_register_PISO.c)
 
-target_compile_options(rpi_pico_shift_register PRIVATE -Wall)
+target_compile_options(rppsrl PRIVATE -Wall)
 
-target_include_directories(rpi_pico_shift_register PUBLIC ../include)
+target_include_directories(rppsrl PUBLIC ../include)
 
-target_link_libraries(rpi_pico_shift_register pico_stdlib)
+target_link_libraries(rppsrl pico_stdlib)

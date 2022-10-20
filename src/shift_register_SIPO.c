@@ -1,6 +1,6 @@
 
 #include "pico/stdlib.h"
-#include "rpi_pico_shift_register/shift_register_SIPO.h"
+#include "rppsrl/shift_register_SIPO.h"
 
 static void func_set_enable_pin(ShiftRegisterSIPO *sr, uint8_t enable_pin) {
     gpio_init(enable_pin);

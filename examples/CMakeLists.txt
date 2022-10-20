@@ -1,14 +1,17 @@
+file(GLOB EXAMPLE_FILES binary_display.c button_inputs.c)
 
-add_executable(binary_display binary_display.c)
+foreach (EXAMPLE_PATH ${EXAMPLE_FILES})
 
-pico_set_program_name(binary_display "binary_display")
-pico_set_program_version(binary_display "0.1")
+    get_filename_component(EXEC_NAME ${EXAMPLE_PATH} NAME_WE)
 
-pico_enable_stdio_uart(binary_display 1)
-pico_enable_stdio_usb(binary_display 1)
+    add_executable(${EXEC_NAME} ${EXAMPLE_PATH})
 
-target_include_directories(binary_display PUBLIC ../include)
+    pico_enable_stdio_uart(${EXEC_NAME} 1)
+    pico_enable_stdio_usb(${EXEC_NAME} 1)
 
-target_link_libraries(binary_display pico_stdlib rpi_pico_shift_register)
+    target_include_directories(${EXEC_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+    target_link_libraries(${EXEC_NAME} pico_stdlib rppsrl)
 
-pico_add_extra_outputs(binary_display)
+    pico_add_extra_outputs(${EXEC_NAME})
+
+endforeach(EXAMPLE_PATH ${CMAKE_CURRENT_SOURCE_DIR})

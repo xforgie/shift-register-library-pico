@@ -1,20 +1,24 @@
 
-#include "pico/stdlib.h"
-#include "rpi_pico_shift_register/shift_register_PISO.h"
+#include <stdio.h>
 
-static void read_in_byte(ShiftRegisterPISO *sr, char *buffer) {
+#include "pico/stdlib.h"
+#include "rppsrl/shift_register_PISO.h"
+
+static void read_in_byte(ShiftRegisterPISO *sr, uint8_t *buffer) {
 
     gpio_put(sr->latch_pin, false);
 
     uint8_t value = 0;
-
-    for (int i = 0; i < 7; i++) {
-        gpio_put(sr->clock_pin, false);
+    
+    for (int i = 0; i < 8; i++) {
 
         bool data = gpio_get(sr->serial_pin);
         value |= ((data ? 1 : 0) << i);
 
+        busy_wait_us_32(1);
         gpio_put(sr->clock_pin, true);
+        busy_wait_us_32(1);
+        gpio_put(sr->clock_pin, false);
     }
 
     gpio_put(sr->latch_pin, true);
@@ -45,6 +49,6 @@ ShiftRegisterPISO shift_register_PISO_create(uint8_t serial_pin, uint8_t clock_p
     return sr;
 }
 
-void shift_register_PISO_read_in_byte(ShiftRegisterPISO *sr, char *buffer) {
+void shift_register_PISO_read_in_byte(ShiftRegisterPISO *sr, uint8_t *buffer) {
     sr->read_in_byte(sr, buffer);
 }
