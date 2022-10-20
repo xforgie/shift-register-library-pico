@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Raspberry Pi Pico Shift Register Library: include/rpi_pico_shift_register/shift_register_SIPO.h Source File</title>
+<title>Shift Register Library for Raspberry Pi Pico: include/rppsrl/shift_register_SIPO.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Raspberry Pi Pico Shift Register Library
+   <div id="projectname">Shift Register Library for Raspberry Pi Pico
    &#160;<span id="projectnumber">v1.0.0</span>
    </div>
-   <div id="projectbrief">A library to interface with SN74HC595 and CD4021B shift registers using the RP2040</div>
+   <div id="projectbrief">A library to interface with SN74HC595 and CD4021B shift registers using the Raspberry Pi Pico</div>
   </td>
  </tr>
  </tbody>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b4d16a253feb5a54911faffd2bb44424.html">rpi_pico_shift_register</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_a486ce5c99b2ef99072d4e2a799dc672.html">rppsrl</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -77,59 +77,60 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define PIN_DISABLED 0xff   // default value for uninitialized pins</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">   18</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc">   19</a></span>&#160;    <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc">MSBFIRST</a> = 0,   </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">   20</a></span>&#160;    <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a>        </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;} <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structShiftRegisterSIPO.html">   27</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    uint8_t serial_pin;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    uint8_t latch_pin;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    uint8_t clock_pin;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    uint8_t enable_pin;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    uint8_t clear_pin;  <span class="comment">// Not used</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    void (*set_enable_pin)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, uint8_t);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    void (*enable)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, bool);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    void (*latch)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    void (*write_bit)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, bool);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    void (*write_byte)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, uint8_t, <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    void (*clear)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;} <a class="code" href="shift__register__SIPO_8h.html#ab6a173803c36c317564a5722bb17e6b8">ShiftRegisterSIPO</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> <a class="code" href="shift__register__SIPO_8h.html#a7b89757598f03a1996bfc56fcec7a1d2">shift_register_SIPO_create</a> (uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#a89e9cfbebcb6dbac8b08903908e07db6">shift_register_SIPO_set_enable_pin</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, uint8_t enable_pin);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#a1adf26e1f55b2df75cfb223428653765">shift_register_SIPO_enable</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, <span class="keywordtype">bool</span> value);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#adb8adce003fc068b11f6e2f4d7f1c321">shift_register_SIPO_write_bit</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, <span class="keywordtype">bool</span> value);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, uint8_t <span class="keywordtype">byte</span>, <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a> byte_order);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc">   20</a></span>&#160;    <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc">MSBFIRST</a> = 0,   </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">   21</a></span>&#160;    <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a>        </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structShiftRegisterSIPO.html">   28</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    uint8_t serial_pin;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    uint8_t latch_pin;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    uint8_t clock_pin;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    uint8_t enable_pin;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    uint8_t clear_pin;  <span class="comment">// Not used</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    void (*set_enable_pin)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, uint8_t);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    void (*enable)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, bool);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    void (*latch)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    void (*write_bit)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, bool);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    void (*write_byte)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *, uint8_t, <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    void (*clear)(<span class="keyword">struct </span><a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;} <a class="code" href="shift__register__SIPO_8h.html#ab6a173803c36c317564a5722bb17e6b8">ShiftRegisterSIPO</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> <a class="code" href="shift__register__SIPO_8h.html#a7b89757598f03a1996bfc56fcec7a1d2">shift_register_SIPO_create</a> (uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#a89e9cfbebcb6dbac8b08903908e07db6">shift_register_SIPO_set_enable_pin</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, uint8_t enable_pin);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#a1adf26e1f55b2df75cfb223428653765">shift_register_SIPO_enable</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, <span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#adb8adce003fc068b11f6e2f4d7f1c321">shift_register_SIPO_write_bit</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, <span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr, uint8_t <span class="keywordtype">byte</span>, <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a> byte_order);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keywordtype">void</span> <a class="code" href="shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a> (<a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> *sr);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="ashift__register__SIPO_8h_html_ab6a173803c36c317564a5722bb17e6b8"><div class="ttname"><a href="shift__register__SIPO_8h.html#ab6a173803c36c317564a5722bb17e6b8">ShiftRegisterSIPO</a></div><div class="ttdeci">struct ShiftRegisterSIPO ShiftRegisterSIPO</div><div class="ttdoc">A structure containing pin information for a Serial-In-Parallel-Out shift register.</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_a1adf26e1f55b2df75cfb223428653765"><div class="ttname"><a href="shift__register__SIPO_8h.html#a1adf26e1f55b2df75cfb223428653765">shift_register_SIPO_enable</a></div><div class="ttdeci">void shift_register_SIPO_enable(ShiftRegisterSIPO *sr, bool value)</div><div class="ttdoc">Set output enable.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:78</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b"><div class="ttname"><a href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a></div><div class="ttdeci">@ LSBFIRST</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:20</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aa2e427e90e05b7ee1062d77319e37f82"><div class="ttname"><a href="shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a></div><div class="ttdeci">void shift_register_SIPO_clear(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Sets output of shift register to all zeros.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:95</div></div>
-<div class="ttc" id="astructShiftRegisterSIPO_html"><div class="ttname"><a href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a></div><div class="ttdoc">A structure containing pin information for a Serial-In-Parallel-Out shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:27</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_a905f38ead96fb16d6a0a383e478146d8"><div class="ttname"><a href="shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a></div><div class="ttdeci">void shift_register_SIPO_latch(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Latches register output.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:82</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc"><div class="ttname"><a href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc">MSBFIRST</a></div><div class="ttdeci">@ MSBFIRST</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:19</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_a7b89757598f03a1996bfc56fcec7a1d2"><div class="ttname"><a href="shift__register__SIPO_8h.html#a7b89757598f03a1996bfc56fcec7a1d2">shift_register_SIPO_create</a></div><div class="ttdeci">ShiftRegisterSIPO shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin)</div><div class="ttdoc">Sets GPIO and initializes shift_register_SIPO structure.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:44</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142b"><div class="ttname"><a href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a></div><div class="ttdeci">ByteOrder</div><div class="ttdoc">Specifies byte order for serial data.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:18</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_adb8adce003fc068b11f6e2f4d7f1c321"><div class="ttname"><a href="shift__register__SIPO_8h.html#adb8adce003fc068b11f6e2f4d7f1c321">shift_register_SIPO_write_bit</a></div><div class="ttdeci">void shift_register_SIPO_write_bit(ShiftRegisterSIPO *sr, bool value)</div><div class="ttdoc">Write a single bit to the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:86</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aecf26fecc0a2ce6e8a913cc09dfd84ad"><div class="ttname"><a href="shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a></div><div class="ttdeci">void shift_register_SIPO_write_byte(ShiftRegisterSIPO *sr, uint8_t byte, ByteOrder byte_order)</div><div class="ttdoc">Writes a byte of data to the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:90</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_a89e9cfbebcb6dbac8b08903908e07db6"><div class="ttname"><a href="shift__register__SIPO_8h.html#a89e9cfbebcb6dbac8b08903908e07db6">shift_register_SIPO_set_enable_pin</a></div><div class="ttdeci">void shift_register_SIPO_set_enable_pin(ShiftRegisterSIPO *sr, uint8_t enable_pin)</div><div class="ttdoc">Set GPIO for the enable pin.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:74</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_a1adf26e1f55b2df75cfb223428653765"><div class="ttname"><a href="shift__register__SIPO_8h.html#a1adf26e1f55b2df75cfb223428653765">shift_register_SIPO_enable</a></div><div class="ttdeci">void shift_register_SIPO_enable(ShiftRegisterSIPO *sr, bool value)</div><div class="ttdoc">Set output enable.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:75</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b"><div class="ttname"><a href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a></div><div class="ttdeci">@ LSBFIRST</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:21</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_aa2e427e90e05b7ee1062d77319e37f82"><div class="ttname"><a href="shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a></div><div class="ttdeci">void shift_register_SIPO_clear(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Sets output of shift register to all zeros.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:92</div></div>
+<div class="ttc" id="astructShiftRegisterSIPO_html"><div class="ttname"><a href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a></div><div class="ttdoc">A structure containing pin information for a Serial-In-Parallel-Out shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:28</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_a905f38ead96fb16d6a0a383e478146d8"><div class="ttname"><a href="shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a></div><div class="ttdeci">void shift_register_SIPO_latch(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Latches register output.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:79</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc"><div class="ttname"><a href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142baa26e82a37f5fad5934c3fdfa6dbc5ffc">MSBFIRST</a></div><div class="ttdeci">@ MSBFIRST</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:20</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_a7b89757598f03a1996bfc56fcec7a1d2"><div class="ttname"><a href="shift__register__SIPO_8h.html#a7b89757598f03a1996bfc56fcec7a1d2">shift_register_SIPO_create</a></div><div class="ttdeci">ShiftRegisterSIPO shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin)</div><div class="ttdoc">Sets GPIO and initializes shift_register_SIPO structure.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:41</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142b"><div class="ttname"><a href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142b">ByteOrder</a></div><div class="ttdeci">ByteOrder</div><div class="ttdoc">Specifies byte order for serial data.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:19</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_adb8adce003fc068b11f6e2f4d7f1c321"><div class="ttname"><a href="shift__register__SIPO_8h.html#adb8adce003fc068b11f6e2f4d7f1c321">shift_register_SIPO_write_bit</a></div><div class="ttdeci">void shift_register_SIPO_write_bit(ShiftRegisterSIPO *sr, bool value)</div><div class="ttdoc">Write a single bit to the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:83</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_aecf26fecc0a2ce6e8a913cc09dfd84ad"><div class="ttname"><a href="shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a></div><div class="ttdeci">void shift_register_SIPO_write_byte(ShiftRegisterSIPO *sr, uint8_t byte, ByteOrder byte_order)</div><div class="ttdoc">Writes a byte of data to the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:87</div></div>
+<div class="ttc" id="ashift__register__SIPO_8h_html_a89e9cfbebcb6dbac8b08903908e07db6"><div class="ttname"><a href="shift__register__SIPO_8h.html#a89e9cfbebcb6dbac8b08903908e07db6">shift_register_SIPO_set_enable_pin</a></div><div class="ttdeci">void shift_register_SIPO_set_enable_pin(ShiftRegisterSIPO *sr, uint8_t enable_pin)</div><div class="ttdoc">Set GPIO for the enable pin.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:71</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

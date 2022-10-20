@@ -2,7 +2,7 @@
  * @file button_inputs.c
  * @author xforgie (xforgie@gmail.com)
  * @brief This is an example to demonstrate how to
- * interface with a CD4021BE using the rpi_pico_shift_register library
+ * interface with a CD4021BE using the rppsr library
  * @version 0.1
  * @date 2022-10-18
  * 
@@ -20,7 +20,7 @@ void print_button_state(const uint8_t *v) {
     printf("Button states: ");
     
     for (int i = 0; i < 8; i++)
-        printf("%c", (*v >> i) & 1 == 1 ? '1' : '0');
+        printf("%c", (*v >> i) & 1 ? '1' : '0');
 
     printf("\n");
 }

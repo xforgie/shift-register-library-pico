@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Raspberry Pi Pico Shift Register Library: include/rpi_pico_shift_register/shift_register_PISO.h File Reference</title>
+<title>Shift Register Library for Raspberry Pi Pico: include/rppsrl/shift_register_PISO.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Raspberry Pi Pico Shift Register Library
+   <div id="projectname">Shift Register Library for Raspberry Pi Pico
    &#160;<span id="projectnumber">v1.0.0</span>
    </div>
-   <div id="projectbrief">A library to interface with SN74HC595 and CD4021B shift registers using the RP2040</div>
+   <div id="projectbrief">A library to interface with SN74HC595 and CD4021B shift registers using the Raspberry Pi Pico</div>
   </td>
  </tr>
  </tbody>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b4d16a253feb5a54911faffd2bb44424.html">rpi_pico_shift_register</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_a486ce5c99b2ef99072d4e2a799dc672.html">rppsrl</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -78,11 +78,17 @@ $(function() {
 
 <p>header for CD4021B shift register  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for shift_register_PISO.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="shift__register__PISO_8h__incl.png" border="0" usemap="#include_2rpi__pico__shift__register_2shift__register__PISO_8h" alt=""/></div>
+<div class="center"><img src="shift__register__PISO_8h__incl.png" border="0" usemap="#include_2rppsrl_2shift__register__PISO_8h" alt=""/></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="shift__register__PISO_8h__dep__incl.png" border="0" usemap="#include_2rppsrl_2shift__register__PISO_8hdep" alt=""/></div>
 </div>
 </div>
 <p><a href="shift__register__PISO_8h_source.html">Go to the source code of this file.</a></p>
@@ -104,9 +110,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac593b25400c91a59fc98bb96b006acf1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structShiftRegisterPISO.html">ShiftRegisterPISO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shift__register__PISO_8h.html#ac593b25400c91a59fc98bb96b006acf1">shift_register_PISO_create</a> (uint8_t serial_pin, uint8_t clock_pin, uint8_t latch_pin)</td></tr>
 <tr class="memdesc:ac593b25400c91a59fc98bb96b006acf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets GPIO and initializes <a class="el" href="structShiftRegisterPISO.html" title="structure containing pin information for a Parallel-In-Serial-Out shift register">ShiftRegisterPISO</a> structure.  <a href="shift__register__PISO_8h.html#ac593b25400c91a59fc98bb96b006acf1">More...</a><br /></td></tr>
 <tr class="separator:ac593b25400c91a59fc98bb96b006acf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4169985b47fd657d2f89eda88c12fffa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shift__register__PISO_8h.html#a4169985b47fd657d2f89eda88c12fffa">shift_register_PISO_read_in_byte</a> (<a class="el" href="structShiftRegisterPISO.html">ShiftRegisterPISO</a> *sr, char *buffer)</td></tr>
-<tr class="memdesc:a4169985b47fd657d2f89eda88c12fffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a byte into the provided buffer from the shift register.  <a href="shift__register__PISO_8h.html#a4169985b47fd657d2f89eda88c12fffa">More...</a><br /></td></tr>
-<tr class="separator:a4169985b47fd657d2f89eda88c12fffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae01bab556274841b0be4eb5231cf5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shift__register__PISO_8h.html#a1ae01bab556274841b0be4eb5231cf5e">shift_register_PISO_read_in_byte</a> (<a class="el" href="structShiftRegisterPISO.html">ShiftRegisterPISO</a> *sr, uint8_t *buffer)</td></tr>
+<tr class="memdesc:a1ae01bab556274841b0be4eb5231cf5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a byte into the provided buffer from the shift register.  <a href="shift__register__PISO_8h.html#a1ae01bab556274841b0be4eb5231cf5e">More...</a><br /></td></tr>
+<tr class="separator:a1ae01bab556274841b0be4eb5231cf5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>header for CD4021B shift register </p>
@@ -173,8 +179,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4169985b47fd657d2f89eda88c12fffa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4169985b47fd657d2f89eda88c12fffa">&#9670;&nbsp;</a></span>shift_register_PISO_read_in_byte()</h2>
+<a id="a1ae01bab556274841b0be4eb5231cf5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae01bab556274841b0be4eb5231cf5e">&#9670;&nbsp;</a></span>shift_register_PISO_read_in_byte()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +194,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>buffer</em>&#160;</td>
         </tr>
         <tr>
@@ -200,6 +206,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reads a byte into the provided buffer from the shift register. </p>
+<dl class="section note"><dt>Note</dt><dd>Uses busy waiting to be within the 3 MHz limit of CD4021BE</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sr</td><td>shift register </td></tr>

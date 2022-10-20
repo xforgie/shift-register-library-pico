@@ -67,7 +67,8 @@ void shift_register_SIPO_set_enable_pin (ShiftRegisterSIPO *sr, uint8_t enable_p
  * @details The output enable pin on the SN74HC595 is active low, so
  * the GPIO will be set to the complement of the
  * boolean entered here; i.e. false will set the GPIO high.
- * The enable pin needs to be set by shift_register_SIPO_set_enable_pin()
+ * 
+ * @note The enable pin needs to be set by shift_register_SIPO_set_enable_pin()
  * prior to calling this function
  * 
  * @param sr shift register

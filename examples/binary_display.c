@@ -1,9 +1,8 @@
-
 /**
  * @file binary_display.c
  * @author xforgie (xforgie@gmail.com)
  * @brief This is an example to demonstrate how to interface with
- * an SN74HC595 shift register using the rpi_pico_shift_register library
+ * an SN74HC595 shift register using the rppsr library
  * @version 0.1
  * @date 2022-10-17
  * 

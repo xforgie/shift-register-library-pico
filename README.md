@@ -1,4 +1,4 @@
-# Raspberry Pi Pico Shift Register Library
+# Shift Register Library for Raspberry Pi Pico
 
 A C library to interface with SN74HC595 and CD4021B shift registers using the Raspberry Pi Pico
 
