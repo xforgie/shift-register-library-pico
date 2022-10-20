@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Shift Register Library for Raspberry Pi Pico: Raspberry Pi Pico Shift Register Library</title>
+<title>Shift Register Library for Raspberry Pi Pico: Shift Register Library for Raspberry Pi Pico</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Raspberry Pi Pico Shift Register Library </div>  </div>
+<div class="title">Shift Register Library for Raspberry Pi Pico </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>A C library to interface with SN74HC595 and CD4021B shift registers using the Raspberry Pi Pico</p>
@@ -81,7 +81,7 @@ Examples</h1>
 <p>running 8 LEDs with the SN74HC595: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="shift__register__SIPO_8h.html">rppsrl/shift_register_SIPO.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;rppsrl/shift_register_SIPO.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line"> </div>
@@ -91,14 +91,14 @@ Examples</h1>
 <div class="line">    <span class="keyword">const</span> uint8_t latch_pin = 14;</div>
 <div class="line">    <span class="keyword">const</span> uint8_t clock_pin = 13;</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> sr = <a class="code" href="shift__register__SIPO_8h.html#a7b89757598f03a1996bfc56fcec7a1d2">shift_register_SIPO_create</a>(</div>
+<div class="line">    <a class="code" href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a> sr = <a class="code" href="include_2rppsrl_2shift__register__SIPO_8h.html#adb713aa81e9d4dfaf9a05e9128e3569f">shift_register_SIPO_create</a>(</div>
 <div class="line">        serial_pin,</div>
 <div class="line">        latch_pin,</div>
 <div class="line">        clock_pin</div>
 <div class="line">    );</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a>(&amp;sr);</div>
-<div class="line">    <a class="code" href="shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a>(&amp;sr);</div>
+<div class="line">    <a class="code" href="include_2rppsrl_2shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a>(&amp;sr);</div>
+<div class="line">    <a class="code" href="include_2rppsrl_2shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a>(&amp;sr);</div>
 <div class="line"> </div>
 <div class="line">    uint8_t sum = 0;</div>
 <div class="line">    uint32_t time_to_wait = 500;</div>
@@ -111,8 +111,8 @@ Examples</h1>
 <div class="line">            </div>
 <div class="line">            delay_time = make_timeout_time_ms(time_to_wait); <span class="comment">// restart the timer</span></div>
 <div class="line">            </div>
-<div class="line">            <a class="code" href="shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a>(&amp;sr, sum++, <a class="code" href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a>); <span class="comment">// write data to the shift register</span></div>
-<div class="line">            <a class="code" href="shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a>(&amp;sr); <span class="comment">// latch the data to the output</span></div>
+<div class="line">            <a class="code" href="include_2rppsrl_2shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a>(&amp;sr, sum++, <a class="code" href="include_2rppsrl_2shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a>); <span class="comment">// write data to the shift register</span></div>
+<div class="line">            <a class="code" href="include_2rppsrl_2shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a>(&amp;sr); <span class="comment">// latch the data to the output</span></div>
 <div class="line"> </div>
 <div class="line">            printf(<span class="stringliteral">&quot;Sum: %02x\n&quot;</span>, sum);</div>
 <div class="line">        }</div>
@@ -125,7 +125,7 @@ Examples</h1>
 </div><!-- fragment --><p>Reading 8 button inputs from the CD4021B: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="shift__register__PISO_8h.html">rppsrl/shift_register_PISO.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;rppsrl/shift_register_PISO.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> print_button_state(<span class="keyword">const</span> uint8_t *v) {</div>
 <div class="line"> </div>
@@ -147,7 +147,7 @@ Examples</h1>
 <div class="line">    <span class="keyword">const</span> uint8_t latch_pin = 14;</div>
 <div class="line">    <span class="keyword">const</span> uint8_t clock_pin = 15;</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="structShiftRegisterPISO.html">ShiftRegisterPISO</a> sr = <a class="code" href="shift__register__PISO_8h.html#ac593b25400c91a59fc98bb96b006acf1">shift_register_PISO_create</a>(serial_pin, clock_pin, latch_pin);</div>
+<div class="line">    <a class="code" href="structShiftRegisterPISO.html">ShiftRegisterPISO</a> sr = <a class="code" href="include_2rppsrl_2shift__register__PISO_8h.html#ac593b25400c91a59fc98bb96b006acf1">shift_register_PISO_create</a>(serial_pin, clock_pin, latch_pin);</div>
 <div class="line"> </div>
 <div class="line">    uint8_t sum = 0;</div>
 <div class="line">    uint32_t time_to_wait = 100;</div>
@@ -160,7 +160,7 @@ Examples</h1>
 <div class="line">            </div>
 <div class="line">            delay_time = make_timeout_time_ms(time_to_wait); <span class="comment">// restart the timer</span></div>
 <div class="line">            </div>
-<div class="line">            <a class="code" href="shift__register__PISO_8h.html#a1ae01bab556274841b0be4eb5231cf5e">shift_register_PISO_read_in_byte</a>(&amp;sr, &amp;buffer);</div>
+<div class="line">            <a class="code" href="include_2rppsrl_2shift__register__PISO_8h.html#a1ae01bab556274841b0be4eb5231cf5e">shift_register_PISO_read_in_byte</a>(&amp;sr, &amp;buffer);</div>
 <div class="line">            </div>
 <div class="line">            <span class="comment">// Check if any buttons have changed state</span></div>
 <div class="line">            <span class="keywordflow">if</span> (buffer != cur_state) {</div>
@@ -194,17 +194,15 @@ License</h1>
 <p>[BSD 3-Clause](LICENSE) </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
+<div class="ttc" id="ainclude_2rppsrl_2shift__register__PISO_8h_html_ac593b25400c91a59fc98bb96b006acf1"><div class="ttname"><a href="include_2rppsrl_2shift__register__PISO_8h.html#ac593b25400c91a59fc98bb96b006acf1">shift_register_PISO_create</a></div><div class="ttdeci">ShiftRegisterPISO shift_register_PISO_create(uint8_t serial_pin, uint8_t clock_pin, uint8_t latch_pin)</div><div class="ttdoc">Sets GPIO and initializes ShiftRegisterPISO structure.</div><div class="ttdef"><b>Definition:</b> shift_register_PISO.c:29</div></div>
 <div class="ttc" id="astructShiftRegisterPISO_html"><div class="ttname"><a href="structShiftRegisterPISO.html">ShiftRegisterPISO</a></div><div class="ttdoc">structure containing pin information for a Parallel-In-Serial-Out shift register</div><div class="ttdef"><b>Definition:</b> shift_register_PISO.h:16</div></div>
-<div class="ttc" id="ashift__register__PISO_8h_html_ac593b25400c91a59fc98bb96b006acf1"><div class="ttname"><a href="shift__register__PISO_8h.html#ac593b25400c91a59fc98bb96b006acf1">shift_register_PISO_create</a></div><div class="ttdeci">ShiftRegisterPISO shift_register_PISO_create(uint8_t serial_pin, uint8_t clock_pin, uint8_t latch_pin)</div><div class="ttdoc">Sets GPIO and initializes ShiftRegisterPISO structure.</div><div class="ttdef"><b>Definition:</b> shift_register_PISO.c:29</div></div>
-<div class="ttc" id="ashift__register__PISO_8h_html_a1ae01bab556274841b0be4eb5231cf5e"><div class="ttname"><a href="shift__register__PISO_8h.html#a1ae01bab556274841b0be4eb5231cf5e">shift_register_PISO_read_in_byte</a></div><div class="ttdeci">void shift_register_PISO_read_in_byte(ShiftRegisterPISO *sr, uint8_t *buffer)</div><div class="ttdoc">Reads a byte into the provided buffer from the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_PISO.c:52</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b"><div class="ttname"><a href="shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a></div><div class="ttdeci">@ LSBFIRST</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:21</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aa2e427e90e05b7ee1062d77319e37f82"><div class="ttname"><a href="shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a></div><div class="ttdeci">void shift_register_SIPO_clear(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Sets output of shift register to all zeros.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:92</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html"><div class="ttname"><a href="shift__register__SIPO_8h.html">shift_register_SIPO.h</a></div><div class="ttdoc">header for SN74HC595 shift register</div></div>
+<div class="ttc" id="ainclude_2rppsrl_2shift__register__PISO_8h_html_a1ae01bab556274841b0be4eb5231cf5e"><div class="ttname"><a href="include_2rppsrl_2shift__register__PISO_8h.html#a1ae01bab556274841b0be4eb5231cf5e">shift_register_PISO_read_in_byte</a></div><div class="ttdeci">void shift_register_PISO_read_in_byte(ShiftRegisterPISO *sr, uint8_t *buffer)</div><div class="ttdoc">Reads a byte into the provided buffer from the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_PISO.c:52</div></div>
+<div class="ttc" id="ainclude_2rppsrl_2shift__register__SIPO_8h_html_adb713aa81e9d4dfaf9a05e9128e3569f"><div class="ttname"><a href="include_2rppsrl_2shift__register__SIPO_8h.html#adb713aa81e9d4dfaf9a05e9128e3569f">shift_register_SIPO_create</a></div><div class="ttdeci">ShiftRegisterSIPO shift_register_SIPO_create(uint8_t serial_pin, uint8_t clock_pin, uint8_t latch_pin)</div><div class="ttdoc">Sets GPIO and initializes shift_register_SIPO structure.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:41</div></div>
+<div class="ttc" id="ainclude_2rppsrl_2shift__register__SIPO_8h_html_aa2e427e90e05b7ee1062d77319e37f82"><div class="ttname"><a href="include_2rppsrl_2shift__register__SIPO_8h.html#aa2e427e90e05b7ee1062d77319e37f82">shift_register_SIPO_clear</a></div><div class="ttdeci">void shift_register_SIPO_clear(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Sets output of shift register to all zeros.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:92</div></div>
+<div class="ttc" id="ainclude_2rppsrl_2shift__register__SIPO_8h_html_a905f38ead96fb16d6a0a383e478146d8"><div class="ttname"><a href="include_2rppsrl_2shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a></div><div class="ttdeci">void shift_register_SIPO_latch(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Latches register output.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:79</div></div>
 <div class="ttc" id="astructShiftRegisterSIPO_html"><div class="ttname"><a href="structShiftRegisterSIPO.html">ShiftRegisterSIPO</a></div><div class="ttdoc">A structure containing pin information for a Serial-In-Parallel-Out shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:28</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_a905f38ead96fb16d6a0a383e478146d8"><div class="ttname"><a href="shift__register__SIPO_8h.html#a905f38ead96fb16d6a0a383e478146d8">shift_register_SIPO_latch</a></div><div class="ttdeci">void shift_register_SIPO_latch(ShiftRegisterSIPO *sr)</div><div class="ttdoc">Latches register output.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:79</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_a7b89757598f03a1996bfc56fcec7a1d2"><div class="ttname"><a href="shift__register__SIPO_8h.html#a7b89757598f03a1996bfc56fcec7a1d2">shift_register_SIPO_create</a></div><div class="ttdeci">ShiftRegisterSIPO shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin)</div><div class="ttdoc">Sets GPIO and initializes shift_register_SIPO structure.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:41</div></div>
-<div class="ttc" id="ashift__register__PISO_8h_html"><div class="ttname"><a href="shift__register__PISO_8h.html">shift_register_PISO.h</a></div><div class="ttdoc">header for CD4021B shift register</div></div>
-<div class="ttc" id="ashift__register__SIPO_8h_html_aecf26fecc0a2ce6e8a913cc09dfd84ad"><div class="ttname"><a href="shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a></div><div class="ttdeci">void shift_register_SIPO_write_byte(ShiftRegisterSIPO *sr, uint8_t byte, ByteOrder byte_order)</div><div class="ttdoc">Writes a byte of data to the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:87</div></div>
+<div class="ttc" id="ainclude_2rppsrl_2shift__register__SIPO_8h_html_aecf26fecc0a2ce6e8a913cc09dfd84ad"><div class="ttname"><a href="include_2rppsrl_2shift__register__SIPO_8h.html#aecf26fecc0a2ce6e8a913cc09dfd84ad">shift_register_SIPO_write_byte</a></div><div class="ttdeci">void shift_register_SIPO_write_byte(ShiftRegisterSIPO *sr, uint8_t byte, ByteOrder byte_order)</div><div class="ttdoc">Writes a byte of data to the shift register.</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.c:87</div></div>
+<div class="ttc" id="ainclude_2rppsrl_2shift__register__SIPO_8h_html_aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b"><div class="ttname"><a href="include_2rppsrl_2shift__register__SIPO_8h.html#aaeb92d42f5a6e27b8ba19f18d69d142ba11ddeab5ba3e6292b2371a2b25ef854b">LSBFIRST</a></div><div class="ttdeci">@ LSBFIRST</div><div class="ttdef"><b>Definition:</b> shift_register_SIPO.h:21</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

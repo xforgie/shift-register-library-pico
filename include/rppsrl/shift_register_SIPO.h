@@ -28,8 +28,8 @@ typedef enum {
 typedef struct ShiftRegisterSIPO {
 
     uint8_t serial_pin;
-    uint8_t latch_pin;
     uint8_t clock_pin;
+    uint8_t latch_pin;
 
     uint8_t enable_pin;
     uint8_t clear_pin;  // Not used
@@ -47,11 +47,11 @@ typedef struct ShiftRegisterSIPO {
  * @brief Sets GPIO and initializes shift_register_SIPO structure
  * 
  * @param serial_pin GPIO pin for serial output
- * @param latch_pin GPIO pin for latch output
  * @param clock_pin GPIO pin for clock output
+ * @param latch_pin GPIO pin for latch output
  * @return ShiftRegisterSIPO 
  */
-ShiftRegisterSIPO shift_register_SIPO_create (uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin);
+ShiftRegisterSIPO shift_register_SIPO_create (uint8_t serial_pin, uint8_t clock_pin, uint8_t latch_pin);
 
 /**
  * @brief Set GPIO for the enable pin

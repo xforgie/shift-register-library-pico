@@ -38,11 +38,11 @@ static void func_clear(ShiftRegisterSIPO *sr) {
     shift_register_SIPO_write_byte(sr, false, MSBFIRST);
 }
 
-ShiftRegisterSIPO shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_pin, uint8_t clock_pin) {
+ShiftRegisterSIPO shift_register_SIPO_create(uint8_t serial_pin, uint8_t clock_pin, uint8_t latch_pin) {
     ShiftRegisterSIPO sr = {
         serial_pin,
-        latch_pin,
         clock_pin,
+        latch_pin,
         PIN_DISABLED,
         PIN_DISABLED,
         func_set_enable_pin,
@@ -54,16 +54,16 @@ ShiftRegisterSIPO shift_register_SIPO_create(uint8_t serial_pin, uint8_t latch_p
     };
 
     gpio_init(serial_pin);
-    gpio_init(latch_pin);
     gpio_init(clock_pin);
+    gpio_init(latch_pin);
 
     gpio_set_dir(serial_pin, GPIO_OUT);
-    gpio_set_dir(latch_pin, GPIO_OUT);
     gpio_set_dir(clock_pin, GPIO_OUT);
+    gpio_set_dir(latch_pin, GPIO_OUT);
 
     gpio_put(serial_pin, false);
-    gpio_put(latch_pin, false);
     gpio_put(clock_pin, false);
+    gpio_put(latch_pin, false);
 
     return sr;
 }
